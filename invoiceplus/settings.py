@@ -11,6 +11,11 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+from .prod_settings import (
+    SAFE, 
+    DB_NAME, 
+    DB_PASSWORD
+)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '3v17r5up45qg8znb6qb5zhmmsc5f77r7tpliv462g6g54469t9'
+SECRET_KEY = SAFE
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -80,9 +85,9 @@ WSGI_APPLICATION = 'invoiceplus.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'invoiceplus',
+        'NAME': DB_NAME,
         'USER': 'postgres',
-        'PASSWORD': 'JustL@nd18',
+        'PASSWORD': DB_PASSWORD,
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
