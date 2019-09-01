@@ -1,0 +1,20 @@
+
+
+
+		<div class="pagination">
+          <span class="step-links">
+              {% if invoice_list.has_previous %}
+                  <a href="?page=1">&laquo; first</a>
+                  <a href="?page={{ invoice_list.previous_page_number }}">previous</a>
+              {% endif %}
+
+              <span class="current">
+                  Page {{ invoice_list.number }} of {{ invoice_list.paginator.num_pages }}.
+              </span>
+
+              {% if invoice_list.has_next %}
+                  <a href="?page={{ invoice_list.next_page_number }}">next</a>
+                  <a href="?page={{ invoice_list.paginator.num_pages }}">last &raquo;</a>
+              {% endif %}
+          </span>
+    </div>	

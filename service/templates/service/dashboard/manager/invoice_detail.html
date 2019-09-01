@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}
+
+Invoice detail
+
+{% endblock %}
+
+
+
+{% block content %}
+
+<div class="container mt-5 mb-5">
+	<div class="row">
+		<div class="card" style="width: 80rem;">
+		  <div class="card-body">
+		  	 <div class="col-sm-12">
+		  	 <b><h1>Invoice # {{ invoice.id }} </h1></b>
+		  	 	<p><b>{{ invoice_id }}</b></p>
+			  	 <hr>
+			 <p>From : <b>{{ invoice.user }}</p>
+			  {{ invoice_from.manager.company_name }}
+			 </b>
+			 <p>Date : <b>{{ invoice.created|date:"D M d Y"}}</b></p></br>
+		     <hr>
+		     <div class="items mt-3">	
+		     	<h3 class="header ml-5 mt-5">Invoice items</h3>
+					<table class="cart mt-5 ml-5">
+						<thead>
+							<tr>
+								<th>Service</th>
+								<th>Description</th>
+								<th></th>
+								<th></th>
+								<th>Unit price</th>
+								<th>Unit total price</th>
+							</tr>
+						</thead>
+						<tbody>
+
+							<!-- Foreign Key Reverse look up -->
+
+							{% for invoice_item in invoice.items.all %}
+								<tr>
+									<td>{{ invoice_item.product.name }}</td>
+									<td>{{ invoice_item.product.description }}</br></td>
+									<td class="num"></td>
+									<td class="num"></td>
+									<td class="num">${{ invoice_item.product.price }}</td>
+									<td class="num"></td>
+								</tr>
+							{% endfor %}
+								<tr class="total">
+									<td><b>Total</b></td>
+									<td colspan="3"></td>
+									<td class="num"></td>
+									<td class="num"><b>${{ invoice.get_total_cost }}</b></td>
+								</tr>		
+						</tbody>
+					</table>
+				</h3>
+				</br>
+				<a href="{% url 'service:invoice' %}" class="button light ml-5">List of invoices</a>
+				</br></br>
+		     </div>
+		  </div>
+		</div>
+	</tr>
+</div>
+
+{% endblock %}

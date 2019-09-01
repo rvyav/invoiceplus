@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}
+
+Invoice-creation-successful
+
+{% endblock %}
+
+
+
+{% block content %}
+
+<div class="container mt-5 ml-5">
+	<div class="row">
+		<h4>Invoice created. Thank you.</h4>
+	</div>
+	</br>
+	<a href="{% url 'service:invoice' %}" class="button light">Go back to list of products.</a>
+</div>
+
+{% endblock %}

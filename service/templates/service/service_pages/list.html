@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}
+	{% if category %}
+		{{ category.name }}
+	{% else %}
+		Services
+	{% endif %}
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container mt-5 ml-5">
+	<div class="row">
+
+		<div id="main" class="product-list">
+			<h4>{% if category %}
+					{{ category.name }}
+				{% else %}
+					List of services
+				{% endif %}
+				{% for service in services %}
+					<div class="item mt-5">
+						<a href="{{ service.get_absolute_url }}">{{ service.name }}</a>
+						<br>
+						${{ service.price }}
+					</div>
+				{% endfor %}
+			</h4>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

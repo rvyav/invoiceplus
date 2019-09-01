@@ -1,0 +1,25 @@
+{% extends "user_base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+{% block content %}
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">    
+        <h1>Login here</h1>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <input class="btn btn-primary mt-4" type="submit" />
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+
+

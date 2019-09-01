@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}
+
+Invoices
+
+{% endblock %}
+
+
+
+{% block content %}
+
+	<div class="container mt-5">
+
+		<a href="{% url 'service:add_invoice' %}">
+			<button type="button" class="btn btn-primary ml-auto mt-1 mb-4 ml-5">Create New Invoice</button>
+	  	</a>
+
+	  	<div class="search-bar mt-4">
+        	<form method="GET" action="{% url 'service:search' %}">
+          		{% csrf_token %}
+          		<input type='text' name="q" value="{{ request.GET.q }}" placeholder="Search.."></input>
+          		<input class='btn btn-info' type='submit' value='Search'/>
+        	</form>
+      	</div>
+      	</br>
+     	</br>
+
+		<table>
+		  <tr>
+		    <th>Date</th>
+		    <th>Invoice #</th>
+		    <th>Client</th>
+		    <th>Status</th>
+		    <th>Total</th>
+		    <th>Select Item</th>
+		    <th>Send Email</th>
+		    <th>Delete</th>
+		  </tr>
+		  {% for invoice in invoice_list %}
+		  	{% if invoice.select == False %}
+			  <tr>
+			    <td>{{ invoice.created|date:"D M d Y" }}</td>
+			    <td><a href="{% url 'service:invoice_detail' invoice.id %}" class="button light">{{ invoice.id }}</td>
+			    <td>{{ invoice.user.username }}</td>
+			    <td>sent: <b>{{ invoice.is_paid }}</b></td>
+			    <td><b>{{ invoice.get_total_cost }}</b></td>
+			    <td><a href="{% url 'service:select_item' invoice.id %}"><button class="btn btn-info" type="submit" value="Place order">Select</button></b></a></td>
+			    <td><a href="#"><button class="btn btn-warning" type="submit" value="Place order">Send email</button></b></td>
+			    <td><a href="{% url 'service:delete_invoice' invoice.id %}"><button class="btn btn-danger" type="submit" value="Place order">Delete</button></b></td>
+			  </tr>
+			{% else %}
+			  <tr>
+			    <td>{{ invoice.created|date:"D M d Y" }}</td>
+			    <td><a href="{% url 'service:invoice_detail' invoice.id %}" class="button light">{{ invoice.id }}</td>
+			    <td>{{ invoice.user.username }}</td>
+			    <td>sent: <b>{{ invoice.is_paid }}</b></td>
+			    <td><b>{{ invoice.get_total_cost }}</b></td>
+			    <td><a href="{% url 'service:unselect_item' invoice.id %}"><button class="btn btn-info" type="submit" value="Place order">Selected</button></b></a></td>
+			    <td><a href="#"><button class="btn btn-warning" type="submit" value="Place order">Send email</button></b></a></td>
+			    <td><a href="{% url 'service:delete_invoice' invoice.id %}"><button class="btn btn-danger" type="submit" value="Place order">Delete</button></b></a></td>
+			  </tr>
+			{% endif%}
+		  {% endfor %}
+		</table>
+
+		</br>
+
+		{% include "service/pagination.html" with page=invoice_list %}
+
+		</br></br>
+	</div>
+{% endblock %}
+
+
+
+
+

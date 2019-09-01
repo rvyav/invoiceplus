@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+{% block title %}
+
+Search results
+
+{% endblock %}
+
+
+
+{% block content %}
+
+<div class="container mt-5">
+
+      <a href="{% url 'service:invoice' %}">
+        <button type="button" class="btn btn-info mt-1 mb-4">List of invoices</button>
+      </a>
+
+
+
+      <h1 class="title mt-5">Search results</h1>
+
+
+      <div class="password-list mt-5">
+
+      {% for result in results %}
+
+        <a href='{% url "service:invoice_detail" result.id %}'>{{ result }}</br></br></br></a>
+
+      {% empty %}
+
+      	No result. Try something else.
+
+      {% endfor%}
+
+
+
+{% endblock %}
+
+

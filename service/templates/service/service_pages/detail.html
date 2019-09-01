@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+
+	{{ product.name }}
+
+{% endblock %}
+
+
+{% block content %}
+
+	<div class="product-detail mt-5 ml-5">
+		<h1>{{ service.name }}</h1>
+		<h2><a href="{{ service.category.get_absolute_url }}">{{ service.category }}</a></h2>
+		</br>
+		<h5 class="price"><b>${{ service.price }}</b></h5>
+		</br>
+		<form action="{% url 'service:cart_add' service.id %}" method="post">
+			{% csrf_token %}
+			{{ cart_service_form }}			
+			<button class="btn btn-info" type="submit" value="Add to cart">Add to cart</button>
+		</form>
+		<div class="desc mt-5">
+			<p><b>Description</b></p>
+			{{ service.description|linebreaks }}
+		</div>
+	</div>
+
+{% endblock %}

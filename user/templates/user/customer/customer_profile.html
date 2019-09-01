@@ -1,0 +1,29 @@
+{% extends "customer_base.html" %}
+{% load static %}
+
+
+{% block content %}
+
+<div class="container mt-5">
+	<div class="row">
+		<div class="card" style="width: 38rem;">
+		  <div class="card-header">
+		   <h2><b>{{ user.customer.get_full_name }}</b> Profile</h2>
+		  </div>
+		  <ul class="list-group list-group-flush">
+		    <li class="list-group-item">Username : <b>{{ user.username }}</b></li>
+		    <li class="list-group-item">First name : <b>{{ user.first_name }}</b></li>
+		    <li class="list-group-item">Last name : <b>{{ user.last_name }}</b></li>
+		    <li class="list-group-item">Email : <b>{{ user.email }}</b></li>
+		    <li class="list-group-item">Company : <b>{{ user.customer.phone_number }}</b></li>
+		    <li class="list-group-item">Company : <b>{{ user.customer.city }}</b></li>
+		    <li class="list-group-item">Company : <b>{{ user.customer.postal_code }}</b></li>
+			<li class="list-group-item"><b>Demo version: You cannot edit your profile :)</b></li>
+		  </ul>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+
+

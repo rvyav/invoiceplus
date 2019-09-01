@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}
+
+Customers list
+
+{% endblock %}
+
+
+
+{% block content %}
+
+<div class="container mt-5">
+	<div class="row">
+		<div class="header">
+			<h2>List of customers</h2></br>
+			{% for customer in customers %}
+				<p>{{ customer }}</p></br>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+
+{% endblock %}
