@@ -149,19 +149,9 @@ AUTH_USER_MODEL = 'user.User'
 CART_SESSION_ID = 'cart'
 
 
-# Set up Email to console
-
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-
 # CS4
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-
-
-# Set up Email for Terminal
-
-#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
 
